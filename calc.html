@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf 8">
+        <link rel = "stylesheet" href = "calc.css">
+        <title>calc</title>
+
+ </head>
+ <body>
+    <div id="app">
+        <input placeholder="0" v-model="input" type="text">
+        <div class="cells">
+            <div class="cell num" @click="click(num)" v-for="num in nums" >{{num}}</div>
+            <div class="cell operation" @click="click(operation)"
+            v-for="operation in operations">{{operation}}</div>
+            <div class="cell result" @click="calc">=</div>
+            <div class="reset" @click="reset">RESET</div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el: '#app',
+            data: {
+                input:'',
+                result: '',
+                nums: [1,2,3,4,5,6,7,8,9,0],
+                operations: ['+','-','*','/','.','(',')'],
+            },
+            methods: {
+                click: function(num) {
+                    if (/[a-z]+/.test(this.input) == true) {
+                        this.input = ''
+                        return alert('ошибка')
+                    }
+                    else {
+                        this.input=this.input+num
+                    }
+                }, 
+                calc: function() {
+                    if (/[a-z]+/.test(this.input) == true) {
+                        this.input = ''
+                        return alert('ошибка')
+                    } else {
+                    this.input=eval(this.input)
+                    console.log(this.input)
+                }
+                },
+                reset: function() {
+                    this.input = ''
+                }
+                    
+            }
+        })
+        
+    </script>
+</body>
+</html>
